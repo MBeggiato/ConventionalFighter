@@ -1,5 +1,5 @@
 <script lang="ts">
-	import { Select, Label, Input, Button } from 'flowbite-svelte';
+	import { Select, Label, Input, Button, Toggle, P } from 'flowbite-svelte';
 	let selected = $state('feat');
 	let commitTypes = [
 		{ value: 'build', name: 'build' },
@@ -17,12 +17,15 @@
 	let message = $state('');
 	let context = $state('');
 	let postfix = $state('');
-
+	let breaking = $state(false);
 	const commitMessage = () => {
+		let type = selected;
 		if (context === '') {
-			return `${selected}: ${message} ${postfix}`;
+			type = breaking ? `${type}!` : type;
+			return `${type}: ${message} ${postfix}`;
 		}
-		return `${selected}(${context}): ${message} ${postfix}`;
+		type = breaking ? `${type}(${context})!` : `${type}(${context})`;
+		return `${type}: ${message} ${postfix}`;
 	};
 
 	function copyToClipboard() {
@@ -31,31 +34,41 @@
 </script>
 
 <form>
-	<div class="m-auto flex w-[80%] items-center space-x-2">
-		<div class="flex flex-col items-start" style="width: 20%;">
-			<Label for="countries">Select an option</Label>
-			<Select id="countries" class="mt-2" bind:value={selected} placeholder="">
+	<div class="m-auto flex w-[80%] items-center space-x-2 mt-10">
+		<div class="flex flex-col" style="width: 20%;">
+			<P class="mb-2">Select commit type*:</P>
+			<Select id="countries" bind:value={selected} placeholder="">
 				{#each commitTypes as { value, name }}
 					<option {value}>{name}</option>
 				{/each}
 			</Select>
 		</div>
-		<div class="flex flex-col items-start" style="width: 20%;">
-			<Label for="context">Enter the context</Label>
+		<div class="flex flex-col" style="width: 20%;">
+			<P class="mb-2">Enter the context:</P>
 			<Input type="text" id="context" bind:value={context} placeholder="Context..." />
 		</div>
-		<div class="flex flex-col items-start" style="width: 40%;">
-			<Label for="message">Enter the commit message</Label>
+		<div class="flex flex-col" style="width: 40%;">
+			<P class="mb-2">Enter the commit message*:</P>
 			<Input type="text" bind:value={message} id="message" placeholder="Commit message..." />
 		</div>
-		<div class="flex flex-col items-start" style="width: 20%;">
-			<Label for="postfix">Postfix</Label>
-			<Input type="text" id="postfix" bind:value={postfix} placeholder="(Optional) Postfix" />
+		<div class="flex flex-col" style="width: 20%;">
+			<P class="mb-2">Postfix:</P>
+			<Input type="text" id="postfix" bind:value={postfix} placeholder="Postfix" />
 		</div>
+		<Toggle class="mt-4" color="red" bind:checked={breaking}>Breaking change</Toggle>
 		<Button class="mt-4" on:click={copyToClipboard}>Copy</Button>
 	</div>
 	<div class="m-auto mt-4 w-[80%]">
+		<p class="text-slate-600 text-left">* required</p>
 		<p class="text-center">Your commit message will be:</p>
 		<p class="text-center">{commitMessage()}</p>
 	</div>
 </form>
+
+<style scoped>
+	.clabel {
+		font-size: 1.2rem;
+		margin-bottom: 2px;
+		color: red;
+	}
+</style>
