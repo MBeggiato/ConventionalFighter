@@ -1,5 +1,6 @@
 <script lang="ts">
-	import { Select, Label, Input, Button, Toggle, P } from 'flowbite-svelte';
+	import { Select, Label, Input, Button, Toggle, P, DarkMode, Tooltip } from 'flowbite-svelte';
+
 	let selected = $state('feat');
 	let commitTypes = [
 		{ value: 'build', name: 'build' },
@@ -34,6 +35,12 @@
 </script>
 
 <form>
+	<div class="flex justify-end m-5">
+		<DarkMode
+			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2"
+		/>
+		<Tooltip>Toggle dark mode</Tooltip>
+	</div>
 	<div class="m-auto flex w-[80%] items-center space-x-2 mt-10">
 		<div class="flex flex-col" style="width: 20%;">
 			<P class="mb-2">Select commit type*:</P>
@@ -59,9 +66,9 @@
 		<Button class="mt-4" on:click={copyToClipboard}>Copy</Button>
 	</div>
 	<div class="m-auto mt-4 w-[80%]">
-		<p class="text-slate-600 text-left">* required</p>
-		<p class="text-center">Your commit message will be:</p>
-		<p class="text-center">{commitMessage()}</p>
+		<P class="text-left text-sm">* required</P>
+		<P class="text-center">Your commit message will be:</P>
+		<P class="text-center text-xl">{commitMessage()}</P>
 	</div>
 </form>
 
