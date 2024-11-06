@@ -1,38 +1,50 @@
-# sv
+# ConventionalFighter
 
-Everything you need to build a Svelte project, powered by [`sv`](https://github.com/sveltejs/cli).
+ConventionalFighter (CF) aims to create an easy way to generate conventional commit messages by providing a [simple web GUI](https://mbeggiato.github.io/ConventionalFighter/).
 
-## Creating a project
+CF follows the Conventional Commits specification 1.0.0 found [here](https://www.conventionalcommits.org/en/v1.0.0/).
 
-If you're seeing this, you've probably already done this step. Congrats!
+## Why Use Conventional Commits
+- Automatically generating CHANGELOGs.
+- Automatically determining a semantic version bump (based on the types of commits landed).
+- Communicating the nature of changes to teammates, the public, and other stakeholders.
+- Triggering build and publish processes.
+- Making it easier for people to contribute to your projects by allowing them to explore a more structured commit history.
 
-```bash
-# create a new project in the current directory
-npx sv create
+## Getting Started
 
-# create a new project in my-app
-npx sv create my-app
-```
+### Prerequisites
+- Node.js (version 14 or later)
+- npm (version 6 or later)
 
-## Developing
+### Installation
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/mbeggiato/ConventionalFighter.git
+    cd ConventionalFighter
+    ```
 
-Once you've created a project and installed dependencies with `npm install` (or `pnpm install` or `yarn`), start a development server:
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-```bash
+### Running the Application
+To start the development server, run:
+```sh
 npm run dev
-
-# or start the server and open the app in a new browser tab
-npm run dev -- --open
 ```
+This will start the application at `http://localhost:5173/`.
 
-## Building
-
-To create a production version of your app:
-
-```bash
+### Building
+To build this project run
+```sh
 npm run build
 ```
 
-You can preview the production build with `npm run preview`.
+> [!TIP]  
+> Checkout this projects GitHub actions to learn more about building and deploying.
 
-> To deploy your app, you may need to install an [adapter](https://svelte.dev/docs/kit/adapters) for your target environment.
+
+## License
+This project is licensed under the MIT License. 
