@@ -18,8 +18,15 @@
 	let context = $state('');
 	let postfix = $state('');
 
+	const commitMessage = () => {
+		if (context === '') {
+			return `${selected}: ${message} ${postfix}`;
+		}
+		return `${selected}(${context}): ${message} ${postfix}`;
+	};
+
 	function copyToClipboard() {
-		navigator.clipboard.writeText(`${selected}(${context}): ${message} ${postfix}`.trimEnd());
+		navigator.clipboard.writeText(commitMessage().trimEnd());
 	}
 </script>
 
@@ -49,6 +56,6 @@
 	</div>
 	<div class="m-auto mt-4 w-[80%]">
 		<p class="text-center">Your commit message will be:</p>
-		<p class="text-center">{selected}({context}): {message} {postfix}</p>
+		<p class="text-center">{commitMessage()}</p>
 	</div>
 </form>
