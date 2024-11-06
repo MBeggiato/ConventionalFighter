@@ -1,7 +1,7 @@
 <script lang="ts">
 	import { Select, Label, Input, Button } from 'flowbite-svelte';
 	let selected = $state('feat');
-	let countries = [
+	let commitTypes = [
 		{ value: 'build', name: 'build' },
 		{ value: 'ci', name: 'ci' },
 		{ value: 'chore', name: 'chore' },
@@ -28,7 +28,7 @@
 		<div class="flex flex-col items-start" style="width: 20%;">
 			<Label for="countries">Select an option</Label>
 			<Select id="countries" class="mt-2" bind:value={selected} placeholder="">
-				{#each countries as { value, name }}
+				{#each commitTypes as { value, name }}
 					<option {value}>{name}</option>
 				{/each}
 			</Select>
