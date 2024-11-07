@@ -68,11 +68,3 @@
 		<P class="text-center text-xl">{commitMessage()}</P>
 	</div>
 </form>
-
-<style scoped>
-	.clabel {
-		font-size: 1.2rem;
-		margin-bottom: 2px;
-		color: red;
-	}
-</style>
