@@ -1,4 +1,5 @@
 <script>
+	import { LinkHandler } from '$lib/LinkHandler';
 	import {
 		Navbar,
 		NavBrand,
@@ -13,7 +14,7 @@
 </script>
 
 <Navbar>
-	<NavBrand href="/">
+	<NavBrand href={LinkHandler('/')}>
 		<svg
 			xmlns="http://www.w3.org/2000/svg"
 			width="32"
@@ -53,7 +54,7 @@
 		<DarkMode class="ml-2" />
 	</div>
 	<NavUl>
-		<NavLi href="/">Home</NavLi>
+		<NavLi href={LinkHandler('/')}>Home</NavLi>
 		<!--
 		<NavLi href="/about">About</NavLi>
 		<NavLi href="/docs/components/navbar">Navbar</NavLi>
