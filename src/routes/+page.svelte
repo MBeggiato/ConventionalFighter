@@ -36,9 +36,6 @@
 
 <form>
 	<div class="flex justify-end m-5">
-		<DarkMode
-			class="text-gray-500 dark:text-gray-400 hover:bg-gray-100 dark:hover:bg-gray-700 rounded-lg text-xl p-2"
-		/>
 		<Tooltip>Toggle dark mode</Tooltip>
 	</div>
 	<div class="m-auto flex w-[80%] items-center space-x-2 mt-10">
